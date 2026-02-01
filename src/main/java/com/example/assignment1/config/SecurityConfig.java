@@ -38,20 +38,5 @@ public class SecurityConfig {
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public AuthenticationManager authManager(HttpSecurity http) throws Exception {
-        AuthenticationManagerBuilder authBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
-        authBuilder.inMemoryAuthentication()
-                    .withUser("teacher1").password(passwordEncoder().encode("pass")).roles("TEACHER")
-                    .and()
-                    .withUser("student1").password(passwordEncoder().encode("pass")).roles("STUDENT");
-        return authBuilder.build();
-    }
+        }
 }
