@@ -1,0 +1,78 @@
+### Get Auth
+GET http://localhost:8080/auth/
+
+### Auth
+POST http://localhost:8080/auth/
+Content-Type: application/json
+
+{
+    "name": "admin",
+    "password": "adminpassword"
+}
+
+
+
+### AuthTeacher
+POST http://localhost:8080/auth/
+Content-Type: application/json
+
+{
+    "name": "teacher1",
+    "password": "adminpassword"
+}
+
+
+### Register
+POST http://localhost:8080/auth/register 
+Content-Type: application/json
+
+{
+    "name": "admin",
+    "password": "adminpassword",
+    "role": "ADMIN"
+}
+
+### Register
+POST http://localhost:8080/auth/register 
+Content-Type: application/json
+
+{
+    "name": "teacher1",
+    "password": "adminpassword",
+    "role": "TEACHER"
+}
+
+
+### Register Student
+POST http://localhost:8080/auth/register 
+Content-Type: application/json
+
+{
+    "name": "student1",
+    "password": "adminpassword",
+    "role": "STUDENT"
+}
+
+### Auth Student
+POST http://localhost:8080/auth/
+Content-Type: application/json
+
+{
+    "name": "student1",
+    "password": "adminpassword"
+}
+
+# eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdHVkZW50MSIsInJvbGUiOiJTVFVERU5UIiwiaWF0IjoxNzY5OTc4Mjg5LCJleHAiOjE3Njk5ODE4ODl9.tUD4UqfyyunvDr1PIfIUx00ZzeiUyZuwIRzeJjB_H1uREEAacddlcv1jw3xSSJ-3
+
+
+### Teacher Endpoint
+
+GET http://localhost:8080/controlled-teacher
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ0ZWFjaGVyMSIsInJvbGUiOiJURUFDSEVSIiwiaWF0IjoxNzY5OTc4MDIzLCJleHAiOjE3Njk5ODE2MjN9.21Q5JPKia3oBNL17gVo2NglAvcggQzqfXOyfle3nN1T74n8ftmpD8016ehO7NCmS
+
+
+
+### Teacher Endpoint
+
+GET http://localhost:8080/controlled-student
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdHVkZW50MSIsInJvbGUiOiJTVFVERU5UIiwiaWF0IjoxNzY5OTc4Mjg5LCJleHAiOjE3Njk5ODE4ODl9.tUD4UqfyyunvDr1PIfIUx00ZzeiUyZuwIRzeJjB_H1uREEAacddlcv1jw3xSSJ-3

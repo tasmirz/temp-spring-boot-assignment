@@ -1,0 +1,21 @@
+spring:
+  application:
+    datasource:
+      url: jdbc:postgresql://localhost:5432/mydatabase
+      username: myuser
+      password: secret
+  jpa:
+    hibernate:
+      ddl-auto: update # auto, update, create, create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  security:
+    enabled: false
+    user:
+      name: admin
+      password: adminpassword
+  logging:
+    level:
+      root: INFO
+      org.hibernate.SQL: DEBUG
