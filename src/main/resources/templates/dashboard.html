@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script>
+        // Check auth immediately before DOM renders
+        if (!localStorage.getItem('token')) {
+            window.location.replace('/login');
+        }
+    </script>
+</head>
+<body>
+    <div id="dashboardContainer">
+        <h1>Dashboard</h1>
+        <button onclick="logout()">Logout</button>
+
+        <!-- User Info -->
+        <div id="userInfo">
+            <h2>User Information</h2>
+            <p>Role: <span id="userRole"></span></p>
+        </div>
+
+        <!-- Teachers Section - Only for Teachers -->
+        <div id="teacherSection" style="display: none;">
+            <h2>Teacher Controls</h2>
+            
+            <!-- Course Management -->
+            <div>
+
+                <h3>Add/Edit Course</h3>
+                <form id="courseForm" onsubmit="saveCourse(event)">
+                    <input type="hidden" id="courseId">
+                    <div>
+                        <label for="courseName">Course Name:</label>
+                        <input type="text" id="courseName" required>
+                    </div>
+                    <div>
+                        <label for="courseCode">Course Code:</label>
+                        <input type="text" id="courseCode" required>
+                    </div>
+                    <button type="submit" id="courseSubmitBtn">Add Course</button>
+                </form>
+                <div id="courseError" class="error"></div>
+            </div>
+
+            <!-- Student Enrollment Management -->
+            <div>
+                <h3>Manage Student Enrollments</h3>
+                <table id="studentsTable" border="1">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Enrolled Courses</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentsBody">
+                    </tbody>
+                </table>
+
+                <h3>Add/Remove Course for Student</h3>
+                <form id="enrollmentForm" onsubmit="saveEnrollment(event)">
+                    <input type="hidden" id="enrollmentStudentId">
+                    <div>
+                        <label for="enrollmentCourse">Student:</label>
+                        <select id="enrollmentStudent" required onchange="loadStudentCourses()">
+                            <option value="">Select a Student</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="enrollmentCourse">Course:</label>
+                        <select id="enrollmentCourse" required>
+                            <option value="">Select Course</option>
+                        </select>
+                    </div>
+                    <button type="submit" id="enrollmentBtn">Add Course to Student</button>
+                </form>
+                <div id="enrollmentError" class="error"></div>
+            </div>
+        </div>
+
+        <!-- Courses Section - All Authenticated Users -->
+        <div>
+            <h2>Courses</h2>
+            <table id="coursesTable" border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Code</th>
+                        <th id="studentActionsHeader">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="coursesBody">
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <script src="/js/config.js"></script>
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>
