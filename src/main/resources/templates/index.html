@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Registration</title>
+    <script>
+        // If already logged in, redirect to dashboard
+        const token = localStorage.getItem('token');
+        if (token) {
+            window.location.replace('/dashboard');
+        }
+    </script>
+</head>
+<body>
+    <div id="authContainer">
+        <!-- Login Form -->
+        <div id="loginFormDiv" class="authForm">
+            <h2>Login</h2>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div>
+                    <label for="loginUsername">Username:</label>
+                    <input type="text" id="loginUsername" name="username" required>
+                </div>
+                <div>
+                    <label for="loginPassword">Password:</label>
+                    <input type="password" id="loginPassword" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="#" onclick="toggleForms()">Register here</a></p>
+            <div id="loginError" class="error"></div>
+        </div>
+
+        <!-- Registration Form -->
+        <div id="registerFormDiv" class="authForm" style="display: none;">
+            <h2>Register</h2>
+            <form id="registerForm" onsubmit="handleRegister(event)">
+                <div>
+                    <label for="regUsername">Username:</label>
+                    <input type="text" id="regUsername" name="username" required>
+                </div>
+                <div>
+                    <label for="regPassword">Password:</label>
+                    <input type="password" id="regPassword" name="password" required>
+                </div>
+                <div>
+                    <label for="regRole">Role:</label>
+                    <select id="regRole" name="role" required>
+                        <option value="">Select Role</option>
+                        <option value="ROLE_STUDENT">Student</option>
+                        <option value="ROLE_TEACHER">Teacher</option>
+                    </select>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+            <p>Already have an account? <a href="#" onclick="toggleForms()">Login here</a></p>
+            <div id="registerError" class="error"></div>
+        </div>
+    </div>
+
+    <script src="/js/config.js"></script>
+    <script src="/js/auth.js"></script>
+</body>
+</html>
